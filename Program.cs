@@ -6,9 +6,25 @@ namespace CSharpBasics
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Enter username:");
-            string username = Console.ReadLine();
-            Console.WriteLine($"Hello, {username}, today is {DateTime.Now.ToShortDateString()}");
+            for (int i = 1; i <= 100; i++)
+            {
+                if (i % 3 == 0 && i % 5 == 0)
+                {
+                    Console.WriteLine("fizz buzz");
+                }
+                else if(i % 3 == 0)
+                {
+                    Console.WriteLine("fizz");
+                }
+                else if(i % 5 == 0){
+                    Console.WriteLine("buzz");
+                }
+                else
+                {
+                    Console.WriteLine(i);
+                }
+            }
         }
     }
 }
+
