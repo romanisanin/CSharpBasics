@@ -6,9 +6,12 @@ namespace CSharpBasics
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Enter username:");
-            string username = Console.ReadLine();
-            Console.WriteLine($"Hello, {username}, today is {DateTime.Now.ToShortDateString()}");
+            Console.WriteLine("Enter a number:");
+            int number = Int32.Parse(Console.ReadLine());
+            string numberType = (number % 2 == 0) ? numberType = "Odd" : numberType = "Even";
+            Console.WriteLine($"Hello, you have entered {numberType} number");
         }
     }
 }
+//Определить, является ли введённое пользователем число чётным.
+
