@@ -6,9 +6,15 @@ namespace CSharpBasics
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Enter username:");
-            string username = Console.ReadLine();
-            Console.WriteLine($"Hello, {username}, today is {DateTime.Now.ToShortDateString()}");
+            string hw = "Hello";
+            string wh = "";
+            for (int i = hw.Length-1; i >= 0; i--)
+            {
+                wh += hw[i];
+            }
+
+            Console.WriteLine(wh);
         }
     }
 }
+//Написать программу, выводящую введенную пользователем строку в обратном порядке (olleH вместо Hello).
