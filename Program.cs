@@ -6,9 +6,18 @@ namespace CSharpBasics
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Enter username:");
-            string username = Console.ReadLine();
-            Console.WriteLine($"Hello, {username}, today is {DateTime.Now.ToShortDateString()}");
+            Console.WriteLine("Enter a number:");
+            int number = Int32.Parse(Console.ReadLine());
+            int f = GetFibonachi(number);
+            Console.WriteLine(f);
         }
+
+        static int GetFibonachi(int number)
+        {
+            if (number == 0 || number == 1) { return number; }
+            return GetFibonachi(number - 1) + GetFibonachi(number - 2);
+        }
+         
+
     }
 }
