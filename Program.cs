@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 
 namespace CSharpBasics
 {
@@ -7,15 +8,19 @@ namespace CSharpBasics
     {
         static void Main(string[] args)
         {
-            File.AppendAllLines("startup.txt",new string[] { DateTime.Now.ToLocalTime().ToString() });
+            Console.WriteLine("Enter random set of numbers from 0 to 255:");
+            int[] numbers = Array.ConvertAll(Console.ReadLine().Split(' '), int.Parse);
+            
+            byte[] array = numbers.Select(i => (byte)i).ToArray();
 
-            string[] fileText = File.ReadAllLines("startup.txt");
+            File.WriteAllBytes("bytes.bin", array);
+            byte[] fromFile = File.ReadAllBytes("bytes.bin");
 
-            foreach (var item in fileText)
+            foreach (var item in fromFile)
             {
-                Console.WriteLine(item);
+                Console.Write($"{item} ");
             }
         }
     }
 }
-//Написать программу, которая при старте дописывает текущее время в файл «startup.txt».
+//Ввести с клавиатуры произвольный набор чисел (0...255) и записать их в бинарный файл.
