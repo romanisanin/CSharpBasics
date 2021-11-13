@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 
 namespace CSharpBasics
 {
@@ -6,9 +7,15 @@ namespace CSharpBasics
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Enter username:");
-            string username = Console.ReadLine();
-            Console.WriteLine($"Hello, {username}, today is {DateTime.Now.ToShortDateString()}");
+            File.AppendAllLines("startup.txt",new string[] { DateTime.Now.ToLocalTime().ToString() });
+
+            string[] fileText = File.ReadAllLines("startup.txt");
+
+            foreach (var item in fileText)
+            {
+                Console.WriteLine(item);
+            }
         }
     }
 }
+//Написать программу, которая при старте дописывает текущее время в файл «startup.txt».
