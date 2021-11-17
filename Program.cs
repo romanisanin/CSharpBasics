@@ -19,9 +19,10 @@ namespace CSharpBasics
                 IList<ToDo> toDoList = ReadJson();
                 Console.WriteLine("");
                 Console.WriteLine("Menu:");
-                Console.WriteLine("1. Change Task Status");
-                Console.WriteLine("2. Show All Tasks");
-                Console.WriteLine("3. Close The Program");
+                Console.WriteLine("1. Add a  New Task");
+                Console.WriteLine("2. Change Task Status");
+                Console.WriteLine("3. Show All Tasks");
+                Console.WriteLine("4. Close The Program");
 
                 Console.WriteLine("Enter Menu Item:");
                 if (Int32.TryParse(Console.ReadLine(), out int menuitem))
@@ -29,12 +30,15 @@ namespace CSharpBasics
                     switch (menuitem)
                     {
                         case 1:
-                            ChangeTask(toDoList);
+                            AddTask(toDoList);
                             break;
                         case 2:
-                            Console.Clear();
+                            ChangeTask(toDoList);
                             break;
                         case 3:
+                            Console.Clear();
+                            break;
+                        case 4:
                             Environment.Exit(0);
                             break;
                         default:
@@ -109,6 +113,34 @@ namespace CSharpBasics
             Console.Clear();
             Menu();
         }
+
+        private static void AddTask(IList<ToDo> toDos)
+        {
+            ToDo task = new ToDo();
+            
+            Console.Clear();
+            Console.WriteLine("Enter a new ask:");
+            task.Title = Console.ReadLine();
+            Console.WriteLine("Enter a task status 1 - completed, 0 - not completed:");
+            int status = Int32.Parse(Console.ReadLine());
+            if (status == 1)
+            {
+                task.IsDone = true;
+            }
+            else
+            {
+                task.IsDone= false;
+            }
+
+            toDos.Add(task);
+            string json = JsonSerializer.Serialize<IList<ToDo>>(toDos);
+            File.WriteAllText("tasks.json", json);
+
+            Console.Clear();
+            Menu();
+        }
+
+
     }
 }
 /*(*) Список задач (ToDo-list):
